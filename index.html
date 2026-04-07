@@ -4,23 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bookworm — A quiet place for readers</title>
-    <meta name="description" content="Bookworm is a calm, ad-free, account-free Android book reader. Opens EPUB, PDF, MOBI, FB2, and TXT. Made for readers, not for engagement metrics." />
+    <meta name="description" content="Bookworm is a calm Android reader for EPUB and PDF books. No ads, no accounts, no tracking." />
     <meta property="og:title" content="Bookworm — A quiet place for readers" />
-    <meta property="og:description" content="A calm Android book reader. No ads. No accounts. No tracking. Just books." />
+    <meta property="og:description" content="A calm Android reader for EPUB and PDF books. No ads, no accounts, no tracking." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#161616" />
+    <meta name="theme-color" content="#1c1c1a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #161616;
-            --text: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.65);
-            --text-faint: rgba(255, 255, 255, 0.4);
+            --bg: #1c1c1a;
+            --text: #f5f3ee;
+            --text-dim: rgba(245, 243, 238, 0.62);
+            --text-faint: rgba(245, 243, 238, 0.32);
             --coral: #ff3d5c;
             --coral-hover: #ff5573;
-            --rule: rgba(255, 255, 255, 0.08);
+            --rule: rgba(245, 243, 238, 0.08);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
@@ -33,53 +33,90 @@
             display: flex;
             flex-direction: column;
         }
-        ::selection { background: var(--coral); color: #fff; }
+        ::selection { background: var(--coral); color: var(--bg); }
 
+        /* ── Top nav ── */
+        nav.top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 40px;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        nav.top .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        nav.top .brand .mark {
+            width: 28px;
+            height: 28px;
+        }
+        nav.top .brand .name {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: -0.3px;
+        }
+        nav.top .right {
+            display: flex;
+            gap: 28px;
+        }
+        nav.top .right a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.16s;
+        }
+        nav.top .right a:hover { color: var(--text); }
+
+        /* ── Hero ── */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 80px 24px 60px 24px;
+            padding: 60px 32px 120px 32px;
             text-align: center;
+            max-width: 920px;
+            margin: 0 auto;
         }
 
-        .logo {
-            width: 132px;
-            height: 132px;
-            margin-bottom: 36px;
-            animation: float 6s ease-in-out infinite;
+        .logo-large {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 56px;
+            animation: float 7s ease-in-out infinite;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-6px); }
+            50%      { transform: translateY(-5px); }
         }
 
-        h1.wordmark {
-            font-size: 64px;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            line-height: 1;
-            margin-bottom: 22px;
-        }
-
-        p.tagline {
-            font-size: 22px;
-            font-weight: 500;
+        h1.headline {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 400;
+            font-size: clamp(48px, 8vw, 92px);
+            line-height: 1.04;
+            letter-spacing: -2px;
+            margin-bottom: 36px;
             color: var(--text);
-            line-height: 1.4;
-            max-width: 580px;
-            margin-bottom: 14px;
         }
 
-        p.subtitle {
-            font-size: 16px;
+        p.lede {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(17px, 1.6vw, 20px);
             font-weight: 400;
             color: var(--text-dim);
             line-height: 1.6;
             max-width: 540px;
-            margin-bottom: 48px;
+            margin-bottom: 64px;
         }
 
         .buttons {
@@ -87,137 +124,110 @@
             gap: 14px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 64px;
         }
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 26px;
+            padding: 16px 30px;
             border-radius: 999px;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
             font-size: 15px;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.18s ease;
+            transition: all 0.2s ease;
             border: 1.5px solid transparent;
             white-space: nowrap;
+            letter-spacing: -0.1px;
         }
         .btn-primary {
             background: var(--coral);
             color: #fff;
-            box-shadow: 0 8px 28px rgba(255, 61, 92, 0.28);
+            box-shadow: 0 10px 32px rgba(255, 61, 92, 0.22);
         }
         .btn-primary:hover {
             background: var(--coral-hover);
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(255, 61, 92, 0.36);
+            box-shadow: 0 14px 40px rgba(255, 61, 92, 0.32);
         }
         .btn-secondary {
             background: transparent;
             color: var(--text);
-            border-color: rgba(255, 255, 255, 0.18);
+            border-color: rgba(245, 243, 238, 0.18);
         }
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.32);
+            background: rgba(245, 243, 238, 0.04);
+            border-color: rgba(245, 243, 238, 0.32);
             transform: translateY(-2px);
         }
 
-        .features {
-            display: flex;
-            gap: 32px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 720px;
-            color: var(--text-dim);
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .feature .dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: var(--coral);
-            border-radius: 999px;
-        }
-
+        /* ── Footer ── */
         footer {
             text-align: center;
-            padding: 32px 24px 40px 24px;
+            padding: 36px 32px 44px 32px;
             border-top: 1px solid var(--rule);
             color: var(--text-faint);
             font-size: 13px;
+            font-family: 'Inter', sans-serif;
         }
-        footer .made { margin-bottom: 4px; }
+        footer p { margin: 4px 0; }
         footer .heart { color: var(--coral); }
 
-        @media (max-width: 600px) {
-            main { padding: 60px 20px 48px 20px; }
-            .logo { width: 108px; height: 108px; margin-bottom: 28px; }
-            h1.wordmark { font-size: 48px; letter-spacing: -1px; }
-            p.tagline { font-size: 19px; }
-            p.subtitle { font-size: 15px; margin-bottom: 36px; }
-            .buttons { gap: 12px; margin-bottom: 48px; flex-direction: column; width: 100%; max-width: 320px; }
-            .btn { width: 100%; justify-content: center; padding: 16px 24px; }
-            .features { gap: 18px 24px; font-size: 13px; }
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+            nav.top { padding: 22px 22px; }
+            nav.top .right { gap: 18px; }
+            main { padding: 40px 22px 80px 22px; }
+            .logo-large { width: 100px; height: 100px; margin-bottom: 40px; }
+            h1.headline { letter-spacing: -1.4px; margin-bottom: 28px; }
+            p.lede { margin-bottom: 44px; }
+            .buttons { flex-direction: column; width: 100%; max-width: 320px; gap: 12px; }
+            .btn { width: 100%; justify-content: center; padding: 17px 28px; }
         }
     </style>
 </head>
 <body>
+    <nav class="top">
+        <a class="brand" href="/">
+            <!-- Inline SVG mark — placeholder until real PNG drops at /logo.png -->
+            <svg class="mark" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="170" cy="170" r="170" fill="#ff3d5c"/>
+                <rect x="92" y="78" width="138" height="184" rx="6" fill="white" opacity="0.22"/>
+                <rect x="106" y="84" width="138" height="184" rx="6" fill="white" opacity="0.45"/>
+                <rect x="120" y="90" width="138" height="184" rx="6" fill="white"/>
+            </svg>
+            <span class="name">Bookworm</span>
+        </a>
+        <div class="right">
+            <a href="privacy-policy.html">Privacy</a>
+        </div>
+    </nav>
+
     <main>
-        <!-- Bookworm logo — coral circle with stacked book pages -->
-        <svg class="logo" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-label="Bookworm logo">
-            <circle cx="170" cy="170" r="170" fill="#ff3d5c" />
-            <!-- Back page (faintest) -->
-            <rect x="92"  y="78" width="138" height="184" rx="6" ry="6" fill="white" opacity="0.22" />
-            <!-- Middle page -->
-            <rect x="106" y="84" width="138" height="184" rx="6" ry="6" fill="white" opacity="0.45" />
-            <!-- Front page with subtle bottom-right curl -->
-            <path
-                d="M120 90
-                   h132
-                   a6 6 0 0 1 6 6
-                   v160
-                   a6 6 0 0 1 -6 6
-                   h-110
-                   c-12 0 -22 -10 -22 -22
-                   v-144
-                   a6 6 0 0 1 0 -6 z"
-                fill="white" />
+        <svg class="logo-large" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-label="Bookworm">
+            <circle cx="170" cy="170" r="170" fill="#ff3d5c"/>
+            <rect x="92" y="78" width="138" height="184" rx="6" fill="white" opacity="0.22"/>
+            <rect x="106" y="84" width="138" height="184" rx="6" fill="white" opacity="0.45"/>
+            <rect x="120" y="90" width="138" height="184" rx="6" fill="white"/>
         </svg>
 
-        <h1 class="wordmark">Bookworm</h1>
-        <p class="tagline">A quiet place for readers.</p>
-        <p class="subtitle">No ads. No accounts. No tracking. Just books — opened, remembered, and made to feel like a shelf instead of a list.</p>
+        <h1 class="headline">A quiet place<br/>for readers.</h1>
+        <p class="lede">An EPUB and PDF reader for Android. No ads. No accounts. No tracking. The internet is optional, and reading is the point.</p>
 
         <div class="buttons">
             <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.bookwormapp.reader">
-                <svg width="18" height="20" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg width="16" height="18" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M1.5 1.2v23.6c0 .5.5.8.9.5l17-11.8c.4-.3.4-.8 0-1.1L2.4.7c-.4-.3-.9 0-.9.5z" fill="#fff"/>
                 </svg>
                 Get it on Google Play
             </a>
             <a class="btn btn-secondary" href="privacy-policy.html">Privacy Policy</a>
         </div>
-
-        <div class="features">
-            <span class="feature"><span class="dot"></span>EPUB · PDF · MOBI · FB2 · TXT</span>
-            <span class="feature"><span class="dot"></span>Works offline</span>
-            <span class="feature"><span class="dot"></span>Auto-resume</span>
-            <span class="feature"><span class="dot"></span>OpenDyslexic font</span>
-        </div>
     </main>
 
     <footer>
-        <p class="made">Made with <span class="heart">♥</span> for readers</p>
-        <p>Bookworm — Android, phones only</p>
+        <p>Made with <span class="heart">♥</span> for readers</p>
     </footer>
 </body>
 </html>
