@@ -38,24 +38,16 @@
             --coral: #ff3d5c;
             --rule: rgba(245, 243, 238, 0.08);
         }
-        /* ── Cross-document view transitions ──
-           Chrome 126+ / Safari 18+ crossfade pages on link click.
-           The site-nav is named so it stays visually pinned across
-           navigations instead of fading. Older browsers fall back
-           to instant navigation. */
-        @view-transition { navigation: auto; }
-        ::view-transition-old(root),
-        ::view-transition-new(root) {
-            animation-duration: 320ms;
-            animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── Custom cursor (matches landing page) ── */
+        html, body, * {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='3' fill='%23f5f3ee' opacity='0.85'/%3E%3C/svg%3E") 7 7, default;
         }
-        ::view-transition-group(site-nav),
-        ::view-transition-old(site-nav),
-        ::view-transition-new(site-nav) {
-            animation: none;
+        a, button, .btn, [role="button"], summary, label {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='5' fill='%23ff3d5c'/%3E%3C/svg%3E") 9 9, pointer;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
             background: var(--bg);
             color: var(--text);
@@ -81,7 +73,6 @@
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.06),
                 0 1px 24px rgba(0, 0, 0, 0.18);
-            view-transition-name: site-nav;
         }
         .nav-inner {
             display: flex;
@@ -118,7 +109,6 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: color 0.16s;
         }
         nav.top .right a:hover { color: var(--text); }
 
@@ -182,7 +172,6 @@
             border-bottom: 1.5px dotted var(--coral);
             padding-bottom: 1px;
             font-weight: 500;
-            transition: border-bottom-style 0.15s;
         }
         a.dotted:hover { border-bottom-style: solid; }
 
