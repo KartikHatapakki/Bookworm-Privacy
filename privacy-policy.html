@@ -51,12 +51,22 @@
         }
         ::selection { background: var(--coral); color: var(--bg); }
 
-        /* ── Top nav (matches landing page) ── */
+        /* ── Top nav (sticky, blurred — matches landing page) ── */
         nav.top {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            background: rgba(28, 28, 26, 0.68);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--rule);
+        }
+        .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 28px 40px;
+            padding: 18px 40px;
             max-width: 1280px;
             width: 100%;
             margin: 0 auto;
@@ -178,7 +188,7 @@
         footer .heart { color: var(--coral); }
 
         @media (max-width: 640px) {
-            nav.top { padding: 22px 22px; }
+            .nav-inner { padding: 14px 22px; }
             nav.top .right { gap: 18px; }
             article { padding: 32px 22px 96px 22px; }
             h1.page-title { letter-spacing: -1.2px; }
@@ -191,12 +201,14 @@
 </head>
 <body>
     <nav class="top">
-        <a class="brand" href="./">
-            <img class="mark" src="logo.png" alt="" />
-            <span class="name">Bookworm</span>
-        </a>
-        <div class="right">
-            <a href="./">Home</a>
+        <div class="nav-inner">
+            <a class="brand" href="./">
+                <img class="mark" src="logo.png" alt="" />
+                <span class="name">Bookworm</span>
+            </a>
+            <div class="right">
+                <a href="./">Home</a>
+            </div>
         </div>
     </nav>
 
