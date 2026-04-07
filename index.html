@@ -51,15 +51,21 @@
             cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='5' fill='%23ff3d5c'/%3E%3C/svg%3E") 9 9, pointer;
         }
 
+        html {
+            /* Hard lock against Samsung Internet / Chrome Android
+               auto-shrinking text. 'none' is stricter than '100%'
+               and is what works on Samsung Internet specifically. */
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            text-size-adjust: none;
+        }
         html, body {
             background: var(--bg);
             color: var(--text);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            font-size: 17px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* Stop mobile browsers from auto-shrinking text */
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -215,51 +221,64 @@
         footer p { margin: 4px 0; }
         footer .heart { color: var(--coral); }
 
-        /* ── Mobile ── */
+        /* ── Mobile (≤ 640px) ── */
         @media (max-width: 640px) {
-            .nav-inner { padding: 18px 22px; }
-            nav.top .brand .mark { width: 34px; height: 34px; }
-            nav.top .brand .name { font-size: 22px; }
+            html, body { font-size: 18px; }
+
+            .nav-inner { padding: 20px 22px; }
+            nav.top .brand .mark { width: 38px; height: 38px; }
+            nav.top .brand .name { font-size: 24px; }
             nav.top .right { gap: 18px; }
-            nav.top .right a { font-size: 15px; }
+            nav.top .right a { font-size: 16px; }
 
             main {
-                padding: 56px 22px 96px 22px;
+                padding: 64px 24px 96px 24px;
                 justify-content: flex-start;
             }
             h1.headline {
-                font-size: clamp(56px, 14vw, 84px);
-                letter-spacing: -1.4px;
-                margin-bottom: 28px;
+                font-size: 72px;
+                line-height: 0.98;
+                letter-spacing: -1.8px;
+                margin-bottom: 32px;
                 max-width: none;
             }
             p.lede {
-                font-size: 18px;
-                margin-bottom: 44px;
+                font-size: 20px;
+                line-height: 1.55;
+                margin-bottom: 48px;
                 max-width: none;
             }
 
             .buttons {
                 flex-direction: column;
                 width: 100%;
-                max-width: 360px;
-                gap: 12px;
+                max-width: none;
+                gap: 14px;
             }
             .btn {
                 width: 100%;
                 justify-content: center;
-                padding: 18px 28px;
-                font-size: 16px;
+                padding: 20px 28px;
+                font-size: 17px;
             }
+            .btn .gp-icon { width: 20px; height: 22px; }
             .btn-small {
-                padding: 16px 22px;
-                font-size: 14px;
+                padding: 18px 22px;
+                font-size: 15px;
             }
+            .btn-small .li-icon { width: 17px; height: 17px; }
 
             footer {
-                padding: 32px 22px 40px 22px;
-                font-size: 14px;
+                padding: 36px 24px 44px 24px;
+                font-size: 15px;
             }
+        }
+
+        /* ── Smaller phones (≤ 380px) — keep things from clipping ── */
+        @media (max-width: 380px) {
+            h1.headline { font-size: 60px; letter-spacing: -1.4px; }
+            p.lede { font-size: 19px; }
+            nav.top .brand .name { font-size: 22px; }
         }
     </style>
 </head>
